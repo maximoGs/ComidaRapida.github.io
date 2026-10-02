@@ -6,3 +6,6 @@ Thumbs.db
 BITACORA_PROYECTO.md
 bitacora*.md
 INFORME_*.md
+__pycache__/
+*.pyc
+

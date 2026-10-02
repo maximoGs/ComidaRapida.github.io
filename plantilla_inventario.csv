@@ -1,0 +1,4 @@
+nombre,categoria,subcategoria,precio,precio_anterior,descripcion,presentacion,imagen,badge
+"Producto Ejemplo 1","categoria-1","subcategoria-1",12500,14000,"Descripción detallada del producto con sus características principales.","Presentación 500g","https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80","Destacado 🔥"
+"Producto Ejemplo 2","categoria-1","subcategoria-2",8900,,"Segunda opción ideal para combinar en pedidos o combos.","Unidad estándar","https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop&q=80","Nuevo ✨"
+"Producto Ejemplo 3","categoria-2","all",6200,,"Artículo de la segunda categoría listo para entrega inmediata.","Pack x 2","https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=80",""

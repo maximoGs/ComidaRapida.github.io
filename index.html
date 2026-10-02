@@ -3,33 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Paisana Bebidas | Vinos de Autor & Bebidas Selectas</title>
-  <meta name="description" content="Tienda online de Paisana Bebidas. Vinos de autor por varietales (Malbec, Cabernet, Blends, Blancos, Rosados, Espumantes), destilados, aperitivos, bebidas sin alcohol y snacks. Envíos rápidos.">
+  <title>Fuego Burger | Fast Food, Smash Burgers & Crispy Chicken</title>
+  <meta name="description" content="Hamburguesas smash artesanales de doble cocción, papas volcán cheddar & bacon, tiras de crispy chicken y combos explosivos. ¡Pedí directo por WhatsApp y te llega al instante!">
   
   <!-- Open Graph / Redes Sociales -->
-  <meta property="og:title" content="Paisana Bebidas | Vinos de Autor & Bebidas Selectas">
-  <meta property="og:description" content="Catálogo exclusivo de vinos, bebidas destiladas, mixers y snacks con entrega rápida. Hacé tu pedido directo por WhatsApp.">
+  <meta property="og:title" content="Fuego Burger | Fast Food, Smash Burgers & Crispy Chicken">
+  <meta property="og:description" content="Hamburguesas smash artesanales, papas cheddar & bacon, tiras de crispy chicken y combos explosivos. Pedí directo por WhatsApp.">
   <meta property="og:type" content="website">
   
-  <!-- Google Fonts: Plus Jakarta Sans & Cinzel -->
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Estilos Principales -->
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=4">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 </head>
 <body>
 
   <!-- Barra Superior de Anuncios -->
-  <div class="announcement-bar">
-    <span>🚚 Envíos express a domicilio en Mendoza</span>
-    <span class="badge-pill">❄️ Bebidas listas para tomar</span>
-    <span class="announcement-hide-mobile">✨ Vinos de Autor & Destilados Selectos</span>
+  <div class="announcement-bar" id="announcementBar">
+    <span id="announcementAddressText"><i class="fa-solid fa-location-dot" style="color: var(--gold-primary);"></i> Av. San Martín 1420, Mendoza • Cocina Abierta</span>
+    <a href="https://maps.app.goo.gl/JSEvWcQvFY8zpxcH9" target="_blank" rel="noopener noreferrer" class="announcement-maps-link" id="announcementMapsLink">
+      <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver en Maps
+    </a>
+    <span class="announcement-hide-mobile" id="announcementExtra">🔥 Pan brioche horneado a diario</span>
+    <span class="badge-pill" id="announcementBadge">🛵 Delivery Caliente en 30-40 min</span>
   </div>
 
   <!-- Header Principal -->
@@ -39,12 +42,12 @@
         
         <!-- Marca / Logo -->
         <a href="#inicio" class="brand-logo" id="brandLogo">
-          <div class="brand-logo-badge">
-            <img src="assets/logo.svg" alt="Paisana Bebidas Logo" class="brand-logo-img">
+          <div class="brand-logo-badge" id="brandLogoBadge">
+            <img src="assets/logo.svg" alt="Fuego Burger Logo" class="brand-logo-img" id="headerLogoImg">
           </div>
           <div class="brand-text">
-            <span class="brand-title">PAISANA</span>
-            <span class="brand-subtitle">BEBIDAS SELECTAS</span>
+            <span class="brand-title" id="headerBrandTitle">FUEGO</span>
+            <span class="brand-subtitle" id="headerBrandSubtitle">BURGER & FAST FOOD</span>
           </div>
         </a>
 
@@ -52,7 +55,7 @@
         <div class="header-search">
           <div class="search-input-wrapper">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="desktopSearchInput" class="search-input" placeholder="Buscar vino, lúpulo, gin, fernet, combos, snacks...">
+            <input type="text" id="desktopSearchInput" class="search-input" placeholder="Buscar smash burger, papas cheddar, combos, nuggets...">
             <button class="search-clear-btn" id="desktopSearchClear" aria-label="Limpiar búsqueda">
               <i class="fa-solid fa-xmark"></i>
             </button>
@@ -61,7 +64,7 @@
 
         <!-- Botones de Acción Header -->
         <div class="header-actions">
-          <a href="https://wa.me/5492612586004" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-wa" title="Contactar por WhatsApp" aria-label="WhatsApp directo">
+          <a href="https://wa.me/5492612586004" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-wa" title="Pedir por WhatsApp" aria-label="WhatsApp directo" id="headerWaBtn">
             <i class="fa-brands fa-whatsapp"></i>
           </a>
 
@@ -81,7 +84,7 @@
   <div class="mobile-search-section">
     <div class="search-input-wrapper">
       <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      <input type="text" id="mobileSearchInput" class="search-input" placeholder="Buscar vino, gin, cerveza, snacks...">
+      <input type="text" id="mobileSearchInput" class="search-input" placeholder="Buscar burger, papas, combos, bebidas...">
       <button class="search-clear-btn" id="mobileSearchClear" aria-label="Limpiar búsqueda">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -97,36 +100,36 @@
         
         <div class="hero-content">
           <div class="hero-tag">
-            <img src="assets/logo.svg" alt="Hop icon" class="hero-tag-icon"> Selección Artesanal & Premium 2026
+            <img src="assets/logo.svg" alt="Fuego Icon" class="hero-tag-icon"> 100% CARNE PREMIUM & PAN BRIOCHE ARTESANAL
           </div>
           <h1 class="hero-title">
-            Vinos de Autor, <span>Cervezas & Bebidas</span> de Selección
+            Smash Burgers, <span>Papas Cheddar</span> & Combos Explosivos
           </h1>
           <p class="hero-desc">
-            Vinos boutique por varietales, cervezas con lúpulos seleccionados, destilados premium y combos listos para tus previas y reuniones.
+            Carne de novillo smashada al punto exacto, crocante por fuera y jugosa por dentro, con abundante queso cheddar fundido y panceta ahumada. ¡Hacé tu pedido directo al WhatsApp y te llega al instante!
           </p>
 
           <div class="hero-features">
             <div class="hero-feature-item">
-              <i class="fa-solid fa-bolt"></i>
-              <span>Entrega Express 45'</span>
+              <i class="fa-solid fa-fire"></i>
+              <span>Smash a la Plancha</span>
             </div>
             <div class="hero-feature-item">
-              <i class="fa-solid fa-temperature-arrow-down"></i>
-              <span>Bebidas Frías</span>
+              <i class="fa-solid fa-motorcycle"></i>
+              <span>Llega Caliente 35'</span>
             </div>
             <div class="hero-feature-item">
-              <i class="fa-solid fa-shield-halved"></i>
-              <span>Garantía & Calidad</span>
+              <i class="fa-solid fa-cheese"></i>
+              <span>Cheddar Real Fundido</span>
             </div>
           </div>
 
           <div class="hero-buttons">
-            <button class="btn-primary" onclick="switchCategory('vinos')">
-              <i class="fa-solid fa-wine-glass"></i> Explorar Catálogo
+            <button class="btn-primary" onclick="switchCategory('burgers')">
+              <i class="fa-solid fa-burger"></i> Ver Menú & Pedir
             </button>
             <button class="btn-secondary" onclick="filterByPromoCombos()">
-              <i class="fa-solid fa-fire" style="color: var(--gold-primary);"></i> Combos Previa
+              <i class="fa-solid fa-fire-flame-curved" style="color: var(--gold-primary);"></i> Combos en Promo 🔥
             </button>
           </div>
         </div>
@@ -134,16 +137,52 @@
         <div class="hero-visual">
           <div class="hero-logo-showcase">
             <div class="hero-badge-glow-ring">
-              <img src="assets/logo.svg" alt="Paisana Bebidas Emblema" class="hero-big-logo">
+              <img src="assets/logo.svg" alt="Fuego Burger Emblema" class="hero-big-logo">
             </div>
             <div class="hero-card-float">
-              <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=300&auto=format&fit=crop&q=80" alt="Vino Malbec" class="hero-card-img">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300&auto=format&fit=crop&q=80" alt="Fuego Doble Smash" class="hero-card-img">
               <div>
-                <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.05em;">DESTACADO DEL MES</div>
-                <div style="font-size: 0.88rem; font-weight: 700; color: #fff;">Catena Zapata Malbec</div>
-                <div style="font-size: 0.84rem; color: var(--gold-light); font-weight: 800;">$48.500 <span style="font-size: 0.7rem; color: var(--text-dim); text-decoration: line-through;">$54.000</span></div>
+                <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.05em;">LA MÁS PEDIDA 🔥</div>
+                <div style="font-size: 0.88rem; font-weight: 700; color: #fff;">Fuego Doble Smash</div>
+                <div style="font-size: 0.84rem; color: var(--gold-light); font-weight: 800;">$8.900 <span style="font-size: 0.7rem; color: var(--text-dim); text-decoration: line-through;">$10.500</span></div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Destacada: Mega Promo de la Casa -->
+  <section class="bodega-amiga-section" id="bodegaAmiga">
+    <div class="container">
+      <div class="bodega-amiga-card">
+        <div class="bodega-badge-row">
+          <span class="bodega-pill-badge"><i class="fa-solid fa-fire"></i> 💥 MEGA PROMO DE LA CASA</span>
+          <span class="bodega-location-tag"><i class="fa-solid fa-location-dot"></i> Cocina Central Mendoza</span>
+        </div>
+
+        <div class="bodega-main-layout">
+          <div class="bodega-info-block">
+            <h2 class="bodega-title">Combo Fuego Box para 2 (Burger + Papas + Bebida)</h2>
+            <p class="bodega-desc">
+              Incluye 2 Hamburguesas Doble Smash a elección + 1 Porción Mega de Papas Volcán bañadas en Cheddar & Bacon + 2 Bebidas heladas de 500ml. Ahorrá un 25% y disfrutá la mejor noche de burgers.
+            </p>
+
+            <div class="bodega-menu-notice">
+              <div class="menu-notice-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+              <div class="menu-notice-content">
+                <strong>Tiempo récord de elaboración:</strong>
+                <span>Sale de la plancha en menos de <strong>20 minutos</strong> con empaque térmico para que llegue crujiente.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bodega-action-block">
+            <a href="https://wa.me/5492612586004?text=Hola%20Fuego%20Burger!%20Quiero%20pedir%20la%20Mega%20Promo%20Combo%20Box%20para%202." target="_blank" rel="noopener noreferrer" class="btn-reservar-bodega" id="btnReservarMartino">
+              <i class="fa-brands fa-whatsapp"></i> Pedir Combo Dúo por WhatsApp
+            </a>
+            <span class="bodega-action-hint">Válido para delivery o retiro en mostrador</span>
           </div>
         </div>
       </div>
@@ -155,24 +194,29 @@
     <div class="container">
       <div class="category-tabs-container" id="categoryTabs">
         
-        <button class="category-tab-btn active" data-category="vinos" id="tab-vinos">
-          <i class="fa-solid fa-wine-glass"></i>
-          <span>Vinos</span>
+        <button class="category-tab-btn active" data-category="burgers" id="tab-burgers">
+          <i class="fa-solid fa-burger"></i>
+          <span>Hamburguesas</span>
         </button>
 
-        <button class="category-tab-btn" data-category="bebidas" id="tab-bebidas">
-          <i class="fa-solid fa-beer-mug-empty"></i>
-          <span>Cervezas & Bebidas</span>
+        <button class="category-tab-btn" data-category="combos" id="tab-combos">
+          <i class="fa-solid fa-fire-flame-curved"></i>
+          <span>Combos & Promos</span>
         </button>
 
-        <button class="category-tab-btn" data-category="sin-alcohol" id="tab-sin-alcohol">
-          <i class="fa-solid fa-bottle-water"></i>
-          <span>Bebidas sin Alcohol</span>
-        </button>
-
-        <button class="category-tab-btn" data-category="snacks" id="tab-snacks">
+        <button class="category-tab-btn" data-category="papas-snacks" id="tab-papas-snacks">
           <i class="fa-solid fa-bowl-food"></i>
-          <span>Snacks y Varios</span>
+          <span>Papas & Snacks</span>
+        </button>
+
+        <button class="category-tab-btn" data-category="hotdogs-lomitos" id="tab-hotdogs-lomitos">
+          <i class="fa-solid fa-hotdog"></i>
+          <span>Hot Dogs & Lomos</span>
+        </button>
+
+        <button class="category-tab-btn" data-category="bebidas-postres" id="tab-bebidas-postres">
+          <i class="fa-solid fa-cup-straw"></i>
+          <span>Bebidas & Shakes</span>
         </button>
 
       </div>
@@ -224,9 +268,9 @@
       <div class="section-header-wrap">
         <div>
           <h2 class="section-title" id="currentSectionTitle">
-            <i class="fa-solid fa-wine-glass" style="color: var(--gold-primary);"></i> Vinos de Autor
+            <i class="fa-solid fa-burger" style="color: var(--teal-primary);"></i> Hamburguesas & Smash Gourmet
           </h2>
-          <p class="section-subtitle" id="currentSectionSubtitle">Explorá nuestras mejores etiquetas seleccionadas por varietal</p>
+          <p class="section-subtitle" id="currentSectionSubtitle">Medallones 100% novillo seleccionados, pan brioche suave y combinaciones épicas</p>
         </div>
       </div>
 
@@ -281,6 +325,10 @@
         <span>Subtotal</span>
         <span id="cartSubtotal">$0</span>
       </div>
+      <div class="cart-summary-line" id="cartReferralDiscountRow" style="display: none; color: #10b981;">
+        <span id="cartReferralLabel"><i class="fa-solid fa-gift"></i> Descuento Referido</span>
+        <span id="cartReferralDiscount">-$0</span>
+      </div>
       <div class="cart-summary-line">
         <span>Envío estimado</span>
         <span id="cartShippingFee">$0</span>
@@ -332,6 +380,20 @@
           </div>
         </div>
 
+        <!-- Tarjeta de Punto de Retiro con Google Maps -->
+        <div class="pickup-location-card" id="pickupLocationBox" style="display: none;">
+          <div class="pickup-location-header">
+            <i class="fa-solid fa-store" style="color: var(--gold-primary); font-size: 1.25rem;"></i>
+            <div>
+              <strong>Punto de Retiro <span id="pickupStoreName">Paisana Bebidas</span></strong>
+              <div class="pickup-address-text" id="pickupAddressText">C. Tapón Moyano 1745, M5523 Mendoza</div>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/JSEvWcQvFY8zpxcH9" target="_blank" rel="noopener noreferrer" class="btn-maps-pickup" id="pickupMapsBtn">
+            <i class="fa-solid fa-diamond-turn-right"></i> Ver ubicación en Google Maps
+          </a>
+        </div>
+
         <div class="form-group" id="addressFieldGroup">
           <label class="form-label" for="customerAddress">Dirección de Entrega y Localidad *</label>
           <input type="text" id="customerAddress" class="form-input" placeholder="Calle, Número, Piso/Depto, Barrio">
@@ -353,7 +415,7 @@
 
         <div class="checkout-legal-notice">
           <i class="fa-solid fa-shield-halved" style="color: var(--gold-primary);"></i>
-          <span>La presente solicitud no constituye cobro automático en línea. Venta y entrega reservada exclusivamente a mayores de 18 años (Ley 24.788). Tus datos no se almacenan en servidores externos (Ley 25.326).</span>
+          <span>La solicitud de pedido se envía directamente al WhatsApp de la cocina para confirmación inmediata y despacho caliente. Tus datos no se almacenan en servidores externos (Ley 25.326).</span>
         </div>
 
         <div style="margin-top: 20px;">
@@ -369,11 +431,11 @@
   <div class="modal-backdrop" id="ageGateModal" role="dialog" aria-modal="true">
     <div class="modal-content-card age-gate-card">
       <div class="age-gate-brand-wrap">
-        <img src="assets/logo.svg" alt="Paisana Bebidas" class="age-gate-logo">
+        <img src="assets/logo.svg" alt="Fuego Burger" class="age-gate-logo">
       </div>
       <h2>Control de Acceso +18</h2>
       <p>
-        El acceso a este catálogo digital de vinos, cervezas y bebidas alcohólicas está estrictamente reservado a mayores de 18 años de conformidad con la <strong>Ley Nacional N° 24.788</strong> de Lucha contra el Alcoholismo.
+        La compra y entrega de bebidas alcohólicas está estrictamente reservada a mayores de 18 años de conformidad con la <strong>Ley Nacional N° 24.788</strong>.
       </p>
       <div class="age-gate-legal-note">
         <i class="fa-solid fa-scale-balanced"></i>
@@ -453,24 +515,24 @@
           <i class="fa-solid fa-shield-halved" style="color: var(--teal-light);"></i> Términos, Condiciones & Privacidad
         </h3>
         <p style="font-size: 0.8rem; color: var(--gold-light);">
-          Marco Operativo del Catálogo Digital - Paisana Bebidas
+          Marco Operativo del Catálogo Digital - Fuego Burger Fast Food
         </p>
       </div>
 
       <div class="legal-text-content">
         <h4>1. Naturaleza del Sitio Web y Desacoplamiento</h4>
         <p>
-          Este sitio web es un catálogo digital interactivo e informativo destinado a la exhibición y consulta de disponibilidad de productos de bodegas, cervecerías artesanales y bebidas selectas. El sitio no almacena datos de pago, números de tarjetas de crédito o credenciales bancarias en sus servidores.
+          Este sitio web es una carta/catálogo digital interactivo e informativo para la exhibición y selección de productos gastronómicos de Fuego Burger. El sitio no almacena datos de pago, números de tarjetas de crédito ni credenciales bancarias en sus servidores.
         </p>
 
-        <h4>2. Mayoría de Edad (Ley Nacional 24.788)</h4>
+        <h4>2. Preparación y Entrega</h4>
         <p>
-          Queda expresamente prohibido el consumo y venta de bebidas alcohólicas a menores de 18 años. Todo pedido o consulta de cotización requiere la acreditación fehaciente de la mayoría de edad mediante Documento Nacional de Identidad al momento de la entrega. Beber con moderación.
+          Los pedidos se despachan en recipientes térmicos sellados para garantizar la máxima inocuidad y temperatura del producto. Los tiempos estimados de delivery son de 30 a 40 minutos según la zona de cobertura.
         </p>
 
         <h4>3. Protección de Datos Personales (Ley 25.326)</h4>
         <p>
-          Los datos ingresados en el formulario de pedido (nombre, dirección y medios de contacto) son procesados localmente en el navegador del usuario exclusivamente para construir el mensaje de consulta enviado vía WhatsApp. No son comercializados, cedidos a terceros ni almacenados en bases de datos externas no autorizadas.
+          Los datos ingresados en el formulario de pedido (nombre, dirección y notas) son procesados localmente en el navegador del usuario exclusivamente para construir el mensaje enviado vía WhatsApp a la cocina. No son comercializados ni almacenados en servidores externos.
         </p>
 
         <h4>4. Derecho de Revocación y Arrepentimiento (Res. 424/2020)</h4>
@@ -494,27 +556,27 @@
   </div>
 
   <!-- Barra de Navegación Inferior Móvil (App Style) -->
-  <nav class="mobile-bottom-nav" aria-label="Navegación móvil">
-    <button class="bottom-nav-item active" onclick="switchCategory('vinos')" id="bnav-vinos">
-      <i class="fa-solid fa-wine-glass"></i>
-      <span>Vinos</span>
+  <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Navegación móvil">
+    <button class="bottom-nav-item active" onclick="switchCategory('burgers')" id="bnav-burgers">
+      <i class="fa-solid fa-burger"></i>
+      <span>Burgers</span>
     </button>
-    <button class="bottom-nav-item" onclick="switchCategory('bebidas')" id="bnav-bebidas">
-      <i class="fa-solid fa-beer-mug-empty"></i>
-      <span>Bebidas</span>
+    <button class="bottom-nav-item" onclick="switchCategory('combos')" id="bnav-combos">
+      <i class="fa-solid fa-fire-flame-curved"></i>
+      <span>Combos</span>
     </button>
-    <button class="bottom-nav-item" onclick="switchCategory('sin-alcohol')" id="bnav-sin-alcohol">
-      <i class="fa-solid fa-bottle-water"></i>
-      <span>Sin Alcohol</span>
-    </button>
-    <button class="bottom-nav-item" onclick="switchCategory('snacks')" id="bnav-snacks">
+    <button class="bottom-nav-item" onclick="switchCategory('papas-snacks')" id="bnav-papas-snacks">
       <i class="fa-solid fa-bowl-food"></i>
-      <span>Snacks</span>
+      <span>Papas</span>
+    </button>
+    <button class="bottom-nav-item" onclick="switchCategory('bebidas-postres')" id="bnav-bebidas-postres">
+      <i class="fa-solid fa-cup-straw"></i>
+      <span>Bebidas</span>
     </button>
     <button class="bottom-nav-item" id="mobileCartBtn" aria-label="Ver Carrito">
       <i class="fa-solid fa-bag-shopping"></i>
       <span class="bottom-nav-badge" id="mobileCartBadge">0</span>
-      <span>Carrito</span>
+      <span>Pedido</span>
     </button>
   </nav>
 
@@ -525,23 +587,23 @@
         
         <div class="footer-brand">
           <div class="footer-brand-header">
-            <img src="assets/logo.svg" alt="Paisana Bebidas" class="footer-logo-img">
+            <img src="assets/logo.svg" alt="Fuego Burger Logo" class="footer-logo-img" id="footerLogoImg">
             <div>
-              <h4>PAISANA BEBIDAS</h4>
-              <span class="footer-tagline">Vinos de Autor & Bebidas Selectas</span>
+              <h4 id="footerBrandTitle">FUEGO BURGER</h4>
+              <span class="footer-tagline" id="footerBrandTagline">Smash Burgers, Crispy Chicken & Loaded Fries</span>
             </div>
           </div>
-          <p>
-            Curaduría especializada de vinos boutique, cervezas de autor con lúpulos seleccionados, destilados premium y aperitivos para elevar cada encuentro.
+          <p id="footerBrandDesc">
+            Hamburguesas artesanales de carne de novillo seleccionada, pan brioche horneado a diario, abundancia de queso cheddar inglés y papas fritas doble cocción crujientes.
           </p>
           <div class="social-links">
-            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+            <a href="https://instagram.com/fuegoburger.mendoza" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram" id="footerIgLink">
               <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="https://wa.me/5492612586004" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+            <a href="https://wa.me/5492612586004" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp" id="footerWaLink">
               <i class="fa-brands fa-whatsapp"></i>
             </a>
-            <a href="mailto:ventas@paisanabebidas.com" class="social-btn" aria-label="Email">
+            <a href="mailto:pedidos@fuegoburger.com" class="social-btn" aria-label="Email" id="footerMailLink">
               <i class="fa-solid fa-envelope"></i>
             </a>
           </div>
@@ -550,21 +612,29 @@
         <div class="footer-col">
           <h5>Horarios & Atención</h5>
           <ul class="footer-links-list">
-            <li><i class="fa-regular fa-clock" style="color: var(--teal-light);"></i> Lunes a Sábados: 10:00 a 00:00 hs</li>
-            <li><i class="fa-regular fa-clock" style="color: var(--teal-light);"></i> Domingos: 17:00 a 23:00 hs</li>
-            <li><i class="fa-solid fa-location-dot" style="color: var(--gold-primary);"></i> Envíos y entregas en toda la ciudad</li>
+            <li id="footerScheduleWeekdays"><i class="fa-regular fa-clock" style="color: var(--teal-light);"></i> Martes a Jueves: 19:30 a 00:30 hs</li>
+            <li id="footerScheduleWeekends"><i class="fa-regular fa-clock" style="color: var(--teal-light);"></i> Viernes a Domingos: 19:00 a 01:30 hs</li>
+            <li class="footer-address-item" id="footerAddressItem">
+              <i class="fa-solid fa-store" style="color: var(--gold-primary);"></i>
+              <span id="footerAddressSpan"><strong>Cocina Central:</strong> Av. San Martín 1420, M5500 Mendoza</span>
+            </li>
+            <li>
+              <a href="https://maps.app.goo.gl/JSEvWcQvFY8zpxcH9" target="_blank" rel="noopener noreferrer" class="footer-maps-link" id="footerMapsLink">
+                <i class="fa-solid fa-map-location-dot" style="color: var(--teal-light);"></i> Cómo llegar en Google Maps
+              </a>
+            </li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Marco Legal & Consumidor</h5>
+          <h5>Marco Legal & Gestión</h5>
           <ul class="footer-links-list">
-            <li>
+            <li id="footerRegretItem">
               <button class="footer-link-btn regret-btn" id="openRegretBtn">
                 <i class="fa-solid fa-rotate-left"></i> <strong>Botón de Arrepentimiento</strong>
               </button>
             </li>
-            <li>
+            <li id="footerPrivacyItem">
               <button class="footer-link-btn" id="openPrivacyBtn">
                 <i class="fa-solid fa-shield-halved"></i> Términos & Privacidad (Ley 25.326)
               </button>
@@ -574,8 +644,13 @@
                 <i class="fa-solid fa-scale-balanced"></i> Defensa de las y los Consumidores
               </a>
             </li>
-            <li>
+            <li id="footerAgeLegalBadge" style="display: none;">
               <span class="legal-badge-pill"><i class="fa-solid fa-ban"></i> Prohibida venta a menores de 18 años (Ley 24.788)</span>
+            </li>
+            <li style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px;">
+              <a href="configurador.html" class="footer-link-btn" style="color: var(--gold-primary); text-decoration: none;" title="Abrir Asistente para dar de alta un nuevo local">
+                <i class="fa-solid fa-gear"></i> <strong>Configurar Nuevo Local</strong>
+              </a>
             </li>
           </ul>
         </div>
@@ -583,11 +658,11 @@
       </div>
 
       <div class="footer-bottom">
-        <div>
-          © 2026 Paisana Bebidas. Catálogo digital interactivo. Beber con moderación. Prohibida la venta de bebidas alcohólicas a menores de 18 años (Ley Nacional 24.788).
+        <div id="footerCopyright">
+          © 2026 Fuego Burger. Smash burgers artesanales, papas y combos express.
         </div>
-        <div style="color: var(--teal-light); opacity: 0.8; margin-top: 4px;">
-          Plataforma de E-Commerce para Vinotecas y Tiendas de Bebidas
+        <div id="footerTaglineBottom" style="color: var(--teal-light); opacity: 0.8; margin-top: 4px;">
+          Plataforma de Pedidos Online para Locales de Comida Rápida & Hamburgueserías
         </div>
       </div>
     </div>
@@ -597,7 +672,8 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="data/products.js"></script>
-  <script src="app.js?v=2"></script>
+  <script src="config.js?v=4"></script>
+  <script src="data/products.js?v=4"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

@@ -4,54 +4,58 @@
    ========================================================================== */
 
 :root {
-  /* Paleta de Colores Extraída de la Identidad de Marca */
-  --teal-primary: #3ca1a4;
-  --teal-light: #58c6c9;
-  --teal-dark: #236f72;
-  --teal-glow: rgba(60, 161, 164, 0.4);
-  --teal-subtle: rgba(60, 161, 164, 0.12);
+  /* Paleta de Colores de Comida Rápida (Rojo Fuego, Cheddar Fundido & Carbón) */
+  --teal-primary: #e11d48;
+  --teal-light: #ff2a4b;
+  --teal-dark: #be123c;
+  --teal-glow: rgba(225, 29, 72, 0.45);
+  --teal-subtle: rgba(225, 29, 72, 0.12);
 
-  --gold-primary: #e5aa38;
-  --gold-light: #f6be4e;
-  --gold-dark: #b88220;
-  --gold-glow: rgba(229, 170, 56, 0.35);
-  --gold-subtle: rgba(229, 170, 56, 0.12);
+  --red-primary: #e11d48;
+  --red-light: #ff2a4b;
+  --red-glow: rgba(225, 29, 72, 0.45);
 
-  --wine-primary: #582029;
-  --wine-light: #7b2a37;
-  --wine-dark: #3a1219;
-  --wine-glow: rgba(88, 32, 41, 0.45);
+  --gold-primary: #f59e0b;
+  --gold-light: #fbbf24;
+  --gold-dark: #d97706;
+  --gold-glow: rgba(245, 158, 11, 0.4);
+  --gold-subtle: rgba(245, 158, 11, 0.14);
 
-  /* Fondos y Superficies */
-  --bg-main: #0c1017;
-  --bg-secondary: #111722;
-  --bg-card: #151e2b;
-  --bg-card-hover: #1c2738;
-  --bg-surface: rgba(17, 23, 34, 0.88);
+  --wine-primary: #881337;
+  --wine-light: #9f1239;
+  --wine-dark: #4c0519;
+  --wine-glow: rgba(225, 29, 72, 0.35);
+
+  /* Fondos y Superficies Cálidas Oscuras de Comida Rápida */
+  --bg-main: #0e0b0d;
+  --bg-secondary: #140f12;
+  --bg-card: #181215;
+  --bg-card-hover: #22181c;
+  --bg-surface: rgba(20, 15, 18, 0.92);
 
   /* Estados & Utilidades */
   --accent-green: #10b981;
   --accent-green-glow: rgba(16, 185, 129, 0.3);
   --accent-red: #ef4444;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-teal: #a5d8da;
-  --text-dim: #64748b;
+  --text-main: #fff5f5;
+  --text-muted: #a89ca1;
+  --text-teal: #fca5a5;
+  --text-dim: #716468;
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-teal: rgba(60, 161, 164, 0.35);
-  --border-active: rgba(229, 170, 56, 0.5);
+  --border-teal: rgba(225, 29, 72, 0.35);
+  --border-active: rgba(245, 158, 11, 0.6);
 
   /* Sombras y Luces */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.65);
-  --shadow-teal: 0 8px 25px rgba(60, 161, 164, 0.25);
-  --shadow-gold: 0 8px 25px rgba(229, 170, 56, 0.2);
-  --shadow-wine: 0 8px 25px rgba(88, 32, 41, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
+  --shadow-teal: 0 8px 25px rgba(225, 29, 72, 0.35);
+  --shadow-gold: 0 8px 25px rgba(245, 158, 11, 0.25);
+  --shadow-wine: 0 8px 25px rgba(136, 19, 55, 0.35);
 
-  /* Tipografía */
+  /* Tipografía Dinámica de Comida Rápida */
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-serif: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
 
   /* Layout */
   --radius-sm: 8px;
@@ -365,13 +369,13 @@ h1, h2, h3, .font-serif {
   gap: 10px;
   padding: 0 16px;
   width: auto;
-  background: linear-gradient(135deg, var(--teal-dark), #174b4d);
+  background: linear-gradient(135deg, #e11d48, #9f1239);
   border: 1px solid var(--border-teal);
-  box-shadow: var(--shadow-teal);
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
 }
 
 .cart-btn-desktop:hover {
-  background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+  background: linear-gradient(135deg, #ff2a4b, #be123c);
   border-color: var(--gold-primary);
   transform: translateY(-2px);
 }
@@ -556,7 +560,7 @@ h1, h2, h3, .font-serif {
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--teal-primary), var(--teal-light));
   border-color: #fff;
-  color: #000;
+  color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 10px 25px var(--teal-glow);
 }
@@ -718,7 +722,7 @@ h1, h2, h3, .font-serif {
 }
 
 .category-tab-btn.active {
-  background: linear-gradient(135deg, var(--teal-dark), #1a5153);
+  background: linear-gradient(135deg, #e11d48, #9f1239);
   color: #ffffff;
   border-color: var(--gold-primary);
   box-shadow: 0 4px 16px var(--teal-glow);
@@ -773,7 +777,7 @@ h1, h2, h3, .font-serif {
 
 .subchip-btn:hover {
   color: var(--text-main);
-  background: rgba(60, 161, 164, 0.15);
+  background: rgba(225, 29, 72, 0.15);
   border-color: var(--teal-primary);
 }
 
@@ -832,8 +836,8 @@ h1, h2, h3, .font-serif {
 }
 
 .view-mode-btn.active {
-  background: linear-gradient(135deg, var(--teal-dark), #174e50);
-  color: var(--gold-light);
+  background: linear-gradient(135deg, #e11d48, #9f1239);
+  color: #ffffff;
   border: 1px solid var(--border-teal);
   box-shadow: 0 2px 6px var(--teal-glow);
 }
@@ -948,8 +952,8 @@ h1, h2, h3, .font-serif {
 .product-media {
   position: relative;
   width: 100%;
-  height: 155px; /* Altura compacta y uniforme */
-  background: radial-gradient(circle at 50% 50%, rgba(60, 161, 164, 0.08) 0%, #0d1117 85%);
+  height: 165px; /* Altura fotográfica para comida rápida */
+  background: radial-gradient(circle at 50% 50%, rgba(225, 29, 72, 0.12) 0%, #120c0e 85%);
   overflow: hidden;
   cursor: pointer;
   display: flex;
@@ -959,15 +963,15 @@ h1, h2, h3, .font-serif {
 
 @media (max-width: 576px) {
   .product-media {
-    height: 132px;
+    height: 142px;
   }
 }
 
 .product-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 8px;
+  object-fit: cover;
+  padding: 0;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -986,20 +990,22 @@ h1, h2, h3, .font-serif {
 }
 
 .badge-tag {
-  background: linear-gradient(135deg, var(--teal-dark), #174f51);
+  background: linear-gradient(135deg, #e11d48, #9f1239);
   color: #fff;
-  font-size: 0.64rem;
-  font-weight: 700;
-  padding: 2px 7px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 3px 8px;
   border-radius: var(--radius-sm);
   letter-spacing: 0.03em;
-  border: 1px solid var(--gold-primary);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(254, 240, 138, 0.4);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .badge-tag.offer {
-  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
-  border-color: #fca5a5;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border-color: #fef08a;
+  color: #fffbeb;
 }
 
 .quick-view-trigger {
@@ -2223,3 +2229,402 @@ h1, h2, h3, .font-serif {
   from { opacity: 1; }
   to { opacity: 0; }
 }
+
+/* ==========================================================================
+   ANNOUNCEMENT BAR & GOOGLE MAPS LINK
+   ========================================================================== */
+.announcement-maps-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 700;
+  font-size: 0.72rem;
+  transition: var(--transition-fast);
+}
+
+.announcement-maps-link:hover {
+  color: #fff;
+}
+
+/* ==========================================================================
+   SECCIÓN BODEGA AMIGA (MARTINO WINES)
+   ========================================================================== */
+.bodega-amiga-section {
+  padding: 12px 0 18px;
+}
+
+.bodega-amiga-card {
+  background: radial-gradient(circle at 15% 50%, rgba(225, 29, 72, 0.25) 0%, rgba(245, 158, 11, 0.12) 50%, rgba(22, 16, 19, 0.95) 100%),
+              linear-gradient(135deg, #1b1216 0%, #100c0e 100%);
+  border: 1px solid rgba(225, 29, 72, 0.4);
+  border-radius: var(--radius-lg);
+  padding: 20px 18px;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55), 0 0 25px rgba(225, 29, 72, 0.15);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .bodega-amiga-card {
+    padding: 26px 32px;
+  }
+}
+
+.bodega-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.bodega-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(229, 170, 56, 0.15);
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.bodega-location-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--teal-light);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.bodega-main-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 860px) {
+  .bodega-main-layout {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+}
+
+.bodega-info-block {
+  flex: 1;
+}
+
+.bodega-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 768px) {
+  .bodega-title {
+    font-size: 1.8rem;
+  }
+}
+
+.bodega-desc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 12px;
+  max-width: 620px;
+}
+
+/* Mini leyenda requerida sobre el menú de 3, 5 y 8 pasos */
+.bodega-menu-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(229, 170, 56, 0.10);
+  border: 1px solid rgba(229, 170, 56, 0.3);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  color: var(--gold-light);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.menu-notice-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: rgba(229, 170, 56, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  flex-shrink: 0;
+  font-size: 0.85rem;
+}
+
+.bodega-action-block {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 860px) {
+  .bodega-action-block {
+    align-items: flex-end;
+    min-width: 240px;
+  }
+}
+
+.btn-reservar-bodega {
+  background: linear-gradient(135deg, #128c7e, #25d366);
+  color: #0b1c14;
+  border: 1px solid #25d366;
+  font-weight: 800;
+  font-size: 0.90rem;
+  padding: 12px 22px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-reservar-bodega:hover {
+  background: #25d366;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+}
+
+.bodega-action-hint {
+  font-size: 0.70rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* ==========================================================================
+   TARJETA DE RETIRO EN LOCAL & GOOGLE MAPS
+   ========================================================================== */
+.pickup-location-card {
+  background: rgba(229, 170, 56, 0.08);
+  border: 1px solid rgba(229, 170, 56, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.pickup-location-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.pickup-location-header strong {
+  font-size: 0.88rem;
+  color: #ffffff;
+  display: block;
+}
+
+.pickup-address-text {
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  margin-top: 2px;
+}
+
+.btn-maps-pickup {
+  background: rgba(60, 161, 164, 0.15);
+  border: 1px solid var(--teal-primary);
+  color: var(--teal-light);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.80rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+  width: 100%;
+}
+
+.btn-maps-pickup:hover {
+  background: var(--teal-primary);
+  color: #000;
+}
+
+.footer-address-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.footer-maps-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--teal-light);
+  font-size: 0.80rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  margin-top: 2px;
+}
+
+.footer-maps-link:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   REFINAMIENTOS MOBILE-FIRST (PRIORIDAD CELULARES)
+   ========================================================================== */
+@media (max-width: 576px) {
+  .announcement-bar {
+    font-size: 0.70rem;
+    padding: 6px 8px;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .header-content {
+    padding: 8px 0;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.58rem;
+  }
+
+  .hero-section {
+    padding: 12px 0 10px;
+  }
+
+  .hero-banner {
+    padding: 18px 14px;
+  }
+
+  .hero-title {
+    font-size: 1.65rem;
+  }
+
+  .hero-desc {
+    font-size: 0.84rem;
+    margin-bottom: 14px;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bodega-amiga-card {
+    padding: 16px 14px;
+  }
+
+  .bodega-title {
+    font-size: 1.35rem;
+  }
+
+  .bodega-menu-notice {
+    font-size: 0.76rem;
+    padding: 8px 10px;
+    width: 100%;
+  }
+
+  .btn-reservar-bodega {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+  }
+
+  .category-tab-btn {
+    padding: 7px 13px;
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+
+  .subchip-btn {
+    padding: 5px 11px;
+    font-size: 0.75rem;
+  }
+
+  .catalog-controls {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+
+  .products-grid {
+    gap: 8px;
+  }
+
+  .product-media {
+    height: 125px;
+  }
+
+  .product-body {
+    padding: 8px;
+  }
+
+  .product-name {
+    font-size: 0.78rem;
+    height: 2.2em;
+    margin-bottom: 2px;
+  }
+
+  .product-details-brief {
+    font-size: 0.68rem;
+    margin-bottom: 4px;
+  }
+
+  .current-price {
+    font-size: 0.88rem;
+  }
+
+  .btn-add-cart {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+
+  .cart-drawer {
+    max-width: 100%;
+  }
+
+  .modal-content-card {
+    padding: 18px 14px;
+    max-height: 92vh;
+  }
+}
+

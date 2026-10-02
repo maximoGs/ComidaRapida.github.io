@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurador Universal & Alta de Local | Generador de Tienda Web</title>
+  <meta name="description" content="Herramienta interactiva para recopilar datos de nuevos comercios y generar la configuración completa para la tienda web en segundos.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #0a0d14;
+      --bg-surface: #111726;
+      --bg-card: #161f33;
+      --bg-card-hover: #1c2740;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-focus: #3ca1a4;
+      --primary: #3ca1a4;
+      --primary-hover: #58c6c9;
+      --accent: #e5aa38;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .app-header {
+      background: rgba(17, 23, 38, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon-box {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(60, 161, 164, 0.35);
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #2a7c7f);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(60, 161, 164, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+      transform: translateY(-1px);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, var(--accent), #c28822);
+      color: #0c1017;
+      font-weight: 700;
+    }
+
+    .btn-accent:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Hero / Presets Selector */
+    .presets-card {
+      margin-top: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .presets-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .presets-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .presets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+      gap: 12px;
+    }
+
+    .preset-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-main);
+    }
+
+    .preset-chip:hover {
+      border-color: var(--primary);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .preset-chip.active {
+      border-color: var(--accent);
+      background: rgba(229, 170, 56, 0.12);
+      box-shadow: 0 0 15px rgba(229, 170, 56, 0.2);
+    }
+
+    .preset-chip i {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .preset-chip span {
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: block;
+    }
+
+    /* Pestañas de Secciones */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      margin: 24px 0 16px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+
+    .tab-btn {
+      padding: 10px 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .tab-btn.active {
+      background: var(--bg-card);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(60, 161, 164, 0.25);
+    }
+
+    /* Layout Principal: Formulario + Previsualización */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card del Formulario */
+    .form-section-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .section-head {
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-head p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Grupos de Formulario */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    .form-label span.req {
+      color: #ef4444;
+      margin-left: 3px;
+    }
+
+    .form-hint {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(60, 161, 164, 0.2);
+    }
+
+    /* Switch toggles */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .toggle-info {
+      flex: 1;
+      padding-right: 14px;
+    }
+
+    .toggle-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toggle-desc {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .switch-ui {
+      width: 44px;
+      height: 24px;
+      background: #334155;
+      border-radius: 999px;
+      position: relative;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .switch-ui::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.2s ease;
+    }
+
+    input[type="checkbox"]:checked + .switch-ui {
+      background: var(--primary);
+    }
+
+    input[type="checkbox"]:checked + .switch-ui::after {
+      transform: translateX(20px);
+    }
+
+    /* Card de Previsualización Flotante */
+    .preview-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      position: sticky;
+      top: 86px;
+    }
+
+    .preview-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+    }
+
+    .preview-live-box {
+      background: #0c1017;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .preview-mock-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .preview-mock-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-mock-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    .preview-mock-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--font-heading);
+    }
+
+    .preview-mock-hero {
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .preview-mock-btn {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .preview-wa-bubble {
+      background: #075e54;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.74rem;
+      color: #e9edef;
+      line-height: 1.4;
+      border-left: 3px solid #25d366;
+    }
+
+    /* Gestor de Categorías */
+    .cat-item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .cat-head-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .cat-chip-tag {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.74rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 3px;
+    }
+
+    .cat-remove-btn {
+      color: #ef4444;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .cat-remove-btn:hover {
+      background: rgba(239, 68, 68, 0.15);
+    }
+
+    /* Visor de Código */
+    .code-viewer-wrap {
+      position: relative;
+      margin-top: 14px;
+    }
+
+    .code-viewer {
+      background: #080c14;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      font-family: 'Consolas', monospace;
+      font-size: 0.8rem;
+      color: #38bdf8;
+      max-height: 380px;
+      overflow-y: auto;
+      white-space: pre;
+    }
+
+    /* Modal / Ficha Imprimible */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printArea, #printArea * {
+        visibility: visible;
+      }
+      #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        color: #000;
+        background: #fff;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado de la Herramienta -->
+  <header class="app-header">
+    <div class="container header-flex">
+      <div class="brand-title-wrap">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <div>
+          <h1 class="brand-title">Configurador Universal de Tiendas</h1>
+          <p class="brand-subtitle">Formulario y generador de configuración para cualquier tipo de negocio</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary" onclick="exportPrintableForm()">
+          <i class="fa-solid fa-print"></i> Imprimir Ficha
+        </button>
+        <button class="btn btn-secondary" onclick="copyConfigCode()">
+          <i class="fa-regular fa-copy"></i> Copiar Código
+        </button>
+        <button class="btn btn-accent" onclick="downloadConfigFile()">
+          <i class="fa-solid fa-download"></i> Descargar config.js
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Selector de Plantillas / Presets -->
+    <section class="presets-card">
+      <h2 class="presets-title">
+        <i class="fa-solid fa-bolt" style="color: var(--accent);"></i>
+        1. Elegí un rubro para precargar la tienda con 1 clic
+      </h2>
+      <p class="presets-desc">
+        Seleccioná una plantilla recomendada para ajustar automáticamente colores, iconos, módulos y categorías acordes a ese tipo de negocio:
+      </p>
+
+      <div class="presets-grid">
+        <div class="preset-chip active" onclick="applyPreset('vinoteca')">
+          <i class="fa-solid fa-wine-glass" style="color: #58c6c9;"></i>
+          <span>Vinoteca / Bebidas</span>
+        </div>
+        <div class="preset-chip" onclick="applyPreset('gastronomia')">
+          <i class="fa-solid fa-burger" style="color: #f59e0b;"></i>
+          <span>Burgers / Pizzas</span>
+        </div>
+        <div class="preset-chip" onclick="applyPreset('indumentaria')">
+          <i class="fa-solid fa-shirt" style="color: #ec4899;"></i>
+          <span>Ropa / Moda</span>
+        </div>
+        <div class="preset-chip" onclick="applyPreset('cafeteria')">
+          <i class="fa-solid fa-mug-hot" style="color: #d97706;"></i>
+          <span>Café & Panadería</span>
+        </div>
+        <div class="preset-chip" onclick="applyPreset('petshop')">
+          <i class="fa-solid fa-paw" style="color: #10b981;"></i>
+          <span>Pet Shop</span>
+        </div>
+        <div class="preset-chip" onclick="applyPreset('dietetica')">
+          <i class="fa-solid fa-leaf" style="color: #84cc16;"></i>
+          <span>Dietética / Salud</span>
+        </div>
+        <div class="preset-chip" onclick="applyPreset('ferreteria')">
+          <i class="fa-solid fa-wrench" style="color: #38bdf8;"></i>
+          <span>Ferretería</span>
+        </div>
+        <div class="preset-chip" onclick="applyPreset('general')">
+          <i class="fa-solid fa-store" style="color: #a855f7;"></i>
+          <span>Tienda General</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navegación por Pasos / Pestañas -->
+    <nav class="nav-tabs" id="wizardTabs">
+      <button class="tab-btn active" onclick="switchStep('step-identidad')">
+        <i class="fa-solid fa-shop"></i> Identidad & Marca
+      </button>
+      <button class="tab-btn" onclick="switchStep('step-contacto')">
+        <i class="fa-brands fa-whatsapp"></i> Contacto & WhatsApp
+      </button>
+      <button class="tab-btn" onclick="switchStep('step-logistica')">
+        <i class="fa-solid fa-truck-fast"></i> Envíos & Retiro
+      </button>
+      <button class="tab-btn" onclick="switchStep('step-pagos')">
+        <i class="fa-solid fa-credit-card"></i> Pagos & Horarios
+      </button>
+      <button class="tab-btn" onclick="switchStep('step-modulos')">
+        <i class="fa-solid fa-sliders"></i> Módulos & Leyes
+      </button>
+      <button class="tab-btn" onclick="switchStep('step-categorias')">
+        <i class="fa-solid fa-list-check"></i> Categorías
+      </button>
+      <button class="tab-btn" onclick="switchStep('step-exportar')">
+        <i class="fa-solid fa-code"></i> Código config.js
+      </button>
+    </nav>
+
+    <!-- Layout: Formularios + Previsualización en Vivo -->
+    <div class="main-grid">
+      
+      <!-- Columna Izquierda: Secciones del Formulario -->
+      <div class="forms-column">
+
+        <!-- PASO 1: IDENTIDAD & MARCA -->
+        <div class="form-section-card step-panel" id="step-identidad">
+          <div class="section-head">
+            <h2><i class="fa-solid fa-shop" style="color: var(--primary);"></i> Identidad de Marca y Comercio</h2>
+            <p>Completá los datos que identifican a la tienda de cara al público.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nombre del Comercio <span class="req">*</span></label>
+              <input type="text" id="brandName" class="form-input" value="Paisana Bebidas" placeholder="Ej: Pizzería Roma">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rubro Comercial</label>
+              <select id="businessType" class="form-select" onchange="handleRubroChange(this.value)">
+                <option value="vinoteca">Vinoteca / Cervezas & Bebidas</option>
+                <option value="gastronomia">Gastronomía / Restaurante</option>
+                <option value="indumentaria">Indumentaria / Ropa / Calzado</option>
+                <option value="cafeteria">Cafetería / Panadería</option>
+                <option value="petshop">Pet Shop / Veterinaria</option>
+                <option value="dietetica">Dietética / Productos Naturales</option>
+                <option value="ferreteria">Ferretería / Corralón</option>
+                <option value="general">Tienda General / Catálogo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Slogan o Frase de Cabecera</label>
+            <input type="text" id="brandTagline" class="form-input" value="Vinos de Autor & Bebidas Selectas" placeholder="Ej: Las mejores hamburguesas artesanales de la ciudad">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Descripción SEO (Para buscadores y WhatsApp)</label>
+            <textarea id="brandDesc" class="form-textarea" rows="2" placeholder="Breve resumen del negocio">Catálogo exclusivo de vinos, bebidas destiladas, mixers y snacks con entrega rápida. Hacé tu pedido directo por WhatsApp.</textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Ruta o URL del Logo</label>
+              <input type="text" id="brandLogoUrl" class="form-input" value="assets/logo.svg" placeholder="assets/logo.svg o URL web">
+              <p class="form-hint">Podés usar un logo SVG en 'assets/logo.svg' o link a imagen externa.</p>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Texto del Logo (Si no tiene imagen)</label>
+              <input type="text" id="brandLogoText" class="form-input" value="PAISANA" placeholder="Ej: DON ANTONIO">
+            </div>
+          </div>
+
+          <div class="section-head" style="margin-top: 24px;">
+            <h2><i class="fa-solid fa-palette" style="color: var(--accent);"></i> Paleta de Colores de la Marca</h2>
+            <p>Elegí los colores para tematizar la web automáticamente.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Color Primario (Botones y destacados)</label>
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="color" id="colorPrimary" value="#3ca1a4" style="height: 40px; width: 50px; background: none; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer;">
+                <input type="text" id="colorPrimaryText" class="form-input" value="#3ca1a4" style="flex: 1;">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Color Secundario / Acento</label>
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="color" id="colorAccent" value="#e5aa38" style="height: 40px; width: 50px; background: none; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer;">
+                <input type="text" id="colorAccentText" class="form-input" value="#e5aa38" style="flex: 1;">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 2: CONTACTO & WHATSAPP -->
+        <div class="form-section-card step-panel" id="step-contacto" style="display: none;">
+          <div class="section-head">
+            <h2><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Canal de Pedidos por WhatsApp</h2>
+            <p>Configurá la línea telefónica que recibirá las solicitudes estructuradas.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">WhatsApp Oficial (Receptor de Pedidos) <span class="req">*</span></label>
+              <input type="text" id="waNumber" class="form-input" value="5492612586004" placeholder="Ej: 5491123456789">
+              <p class="form-hint">Código de país + código de área + número (sin espacios, sin '+' ni guiones).</p>
+            </div>
+            <div class="form-group">
+              <label class="form-label">WhatsApp Visible al Público</label>
+              <input type="text" id="waDisplay" class="form-input" value="+54 9 2612 58-6004" placeholder="Ej: +54 9 11 2345-6789">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Email de Contacto</label>
+              <input type="email" id="contactEmail" class="form-input" value="ventas@paisanabebidas.com" placeholder="contacto@negocio.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Instagram (URL o usuario)</label>
+              <input type="text" id="contactInstagram" class="form-input" value="https://instagram.com" placeholder="https://instagram.com/tu_cuenta">
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 3: LOGÍSTICA & ENTREGAS -->
+        <div class="form-section-card step-panel" id="step-logistica" style="display: none;">
+          <div class="section-head">
+            <h2><i class="fa-solid fa-truck-fast" style="color: var(--primary);"></i> Envíos a Domicilio & Retiro en Local</h2>
+            <p>Configurá los costos de envío y la ubicación de retiro.</p>
+          </div>
+
+          <label class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title"><i class="fa-solid fa-motorcycle"></i> Habilitar Envíos a Domicilio (Delivery)</div>
+              <div class="toggle-desc">Permite a los clientes solicitar despacho a su dirección.</div>
+            </div>
+            <input type="checkbox" id="enableDelivery" checked style="display: none;">
+            <div class="switch-ui"></div>
+          </label>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Costo Estándar de Envío ($)</label>
+              <input type="number" id="deliveryFee" class="form-input" value="2500" placeholder="2500">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tiempo Estimado de Entrega</label>
+              <input type="text" id="deliveryEstimate" class="form-input" value="Entrega Express 45'" placeholder="Ej: 40 a 60 minutos">
+            </div>
+          </div>
+
+          <label class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title"><i class="fa-solid fa-store"></i> Habilitar Retiro en Local (Take Away)</div>
+              <div class="toggle-desc">Muestra la opción de retirar sin costo en el local físico.</div>
+            </div>
+            <input type="checkbox" id="enablePickup" checked style="display: none;">
+            <div class="switch-ui"></div>
+          </label>
+
+          <div class="form-group">
+            <label class="form-label">Dirección Completa del Local</label>
+            <input type="text" id="pickupAddress" class="form-input" value="C. Tapón Moyano 1745, M5523 Mendoza" placeholder="Calle, número, localidad">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Enlace a Google Maps del Local</label>
+            <input type="url" id="pickupMapsUrl" class="form-input" value="https://maps.app.goo.gl/JSEvWcQvFY8zpxcH9" placeholder="https://maps.app.goo.gl/...">
+            <p class="form-hint">Copiá el link 'Compartir ubicación' desde Google Maps.</p>
+          </div>
+        </div>
+
+        <!-- PASO 4: PAGOS & HORARIOS -->
+        <div class="form-section-card step-panel" id="step-pagos" style="display: none;">
+          <div class="section-head">
+            <h2><i class="fa-solid fa-credit-card" style="color: var(--accent);"></i> Medios de Pago & Horarios de Atención</h2>
+            <p>Configurá la moneda y cómo cobran a los clientes.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Símbolo de Moneda</label>
+              <input type="text" id="currencySymbol" class="form-input" value="$" placeholder="$">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Descuento en Efectivo (%)</label>
+              <input type="number" id="cashDiscount" class="form-input" value="10" placeholder="10">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Medios de Pago Disponibles en el Checkout</label>
+            <textarea id="paymentMethods" class="form-textarea" rows="3" placeholder="Un medio por línea">Transferencia Bancaria / Mercado Pago (Alias)
+Efectivo contra entrega (10% OFF)
+Tarjeta de Débito / Crédito al recibir</textarea>
+            <p class="form-hint">Escribí cada medio de pago en un renglón separado.</p>
+          </div>
+
+          <div class="section-head" style="margin-top: 24px;">
+            <h2><i class="fa-regular fa-clock" style="color: var(--primary);"></i> Horarios de Atención</h2>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Lunes a Sábados</label>
+              <input type="text" id="scheduleWeekdays" class="form-input" value="Lunes a Sábados: 10:00 a 00:00 hs" placeholder="Lunes a Sábados: 10:00 a 20:00 hs">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Domingos y Feriados</label>
+              <input type="text" id="scheduleWeekends" class="form-input" value="Domingos: 17:00 a 23:00 hs" placeholder="Domingos: Cerrado">
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 5: MÓDULOS & LEYES -->
+        <div class="form-section-card step-panel" id="step-modulos" style="display: none;">
+          <div class="section-head">
+            <h2><i class="fa-solid fa-sliders" style="color: var(--primary);"></i> Módulos y Normativas Legales</h2>
+            <p>Activá o desactivá funciones según el tipo de producto comercializado.</p>
+          </div>
+
+          <label class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title"><i class="fa-solid fa-ban"></i> Control de Acceso +18 (Ley 24.788)</div>
+              <div class="toggle-desc">Modal bloqueante para confirmar mayoría de edad. <strong>DESACTIVAR</strong> si el negocio no vende alcohol.</div>
+            </div>
+            <input type="checkbox" id="enableAgeGate" checked style="display: none;">
+            <div class="switch-ui"></div>
+          </label>
+
+          <label class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title"><i class="fa-solid fa-rotate-left"></i> Botón de Arrepentimiento (Res. 424/2020)</div>
+              <div class="toggle-desc">Obligatorio por ley en Argentina para compras electrónicas (plazo 10 días).</div>
+            </div>
+            <input type="checkbox" id="enableRegretButton" checked style="display: none;">
+            <div class="switch-ui"></div>
+          </label>
+
+          <label class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title"><i class="fa-solid fa-bullhorn"></i> Barra Superior de Anuncios</div>
+              <div class="toggle-desc">Muestra la cintilla superior con dirección o avisos destacados.</div>
+            </div>
+            <input type="checkbox" id="enableAnnouncement" checked style="display: none;">
+            <div class="switch-ui"></div>
+          </label>
+
+          <label class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title"><i class="fa-solid fa-award"></i> Banner de Alianza / Sponsor / Bodega Amiga</div>
+              <div class="toggle-desc">Sección destacada para promocionar un socio, bodega o combo del mes.</div>
+            </div>
+            <input type="checkbox" id="enableFeaturedBanner" checked style="display: none;">
+            <div class="switch-ui"></div>
+          </label>
+        </div>
+
+        <!-- PASO 6: CATEGORÍAS & VARIETALES -->
+        <div class="form-section-card step-panel" id="step-categorias" style="display: none;">
+          <div class="section-head" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2><i class="fa-solid fa-list-check" style="color: var(--accent);"></i> Categorías y Subcategorías Dinámicas</h2>
+              <p>Las pestañas y la barra móvil se generarán exactamente según esta lista.</p>
+            </div>
+            <button class="btn btn-primary" onclick="addNewCategoryDialog()">
+              <i class="fa-solid fa-plus"></i> Nueva Categoría
+            </button>
+          </div>
+
+          <div id="categoriesListContainer">
+            <!-- Inyectado dinámicamente -->
+          </div>
+        </div>
+
+        <!-- PASO 7: EXPORTAR CÓDIGO -->
+        <div class="form-section-card step-panel" id="step-exportar" style="display: none;">
+          <div class="section-head">
+            <h2><i class="fa-solid fa-code" style="color: var(--primary);"></i> Código Generado para 'config.js'</h2>
+            <p>Descargá este archivo y reemplazalo en la raíz de tu proyecto para aplicar los cambios.</p>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+            <button class="btn btn-accent" onclick="downloadConfigFile()">
+              <i class="fa-solid fa-download"></i> Descargar config.js
+            </button>
+            <button class="btn btn-secondary" onclick="copyConfigCode()">
+              <i class="fa-regular fa-copy"></i> Copiar Código al Portapapeles
+            </button>
+          </div>
+
+          <div class="code-viewer-wrap">
+            <pre class="code-viewer" id="codeViewerBox">// Cargando configuración...</pre>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Columna Derecha: Previsualización en Vivo -->
+      <aside class="preview-column">
+        <div class="preview-card">
+          <div class="preview-title">
+            <i class="fa-solid fa-eye"></i> Previsualización en Vivo
+          </div>
+
+          <div class="preview-live-box" id="previewLiveBox">
+            <div class="preview-mock-header">
+              <div class="preview-mock-logo">
+                <div class="preview-mock-badge" id="previewLogoBadge" style="background: var(--primary);">
+                  <i class="fa-solid fa-shop"></i>
+                </div>
+                <div class="preview-mock-name" id="previewMockName">Paisana Bebidas</div>
+              </div>
+              <span style="font-size: 0.72rem; color: #10b981;"><i class="fa-solid fa-circle"></i> Abierto</span>
+            </div>
+
+            <div class="preview-mock-hero">
+              <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700;" id="previewHeroTag">Selección 2026</div>
+              <div style="font-size: 0.92rem; font-weight: 800; color: #fff; margin: 4px 0;" id="previewHeroTitle">Catálogo Oficial</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3;" id="previewHeroDesc">Productos listos para delivery.</div>
+            </div>
+
+            <button class="preview-mock-btn" id="previewMockBtn" style="background: var(--primary);">
+              <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+            </button>
+          </div>
+
+          <div style="margin-top: 14px;">
+            <div style="font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 6px;">
+              Formato del Mensaje de WhatsApp:
+            </div>
+            <div class="preview-wa-bubble" id="previewWaMessage">
+              🍷 *SOLICITUD DE PEDIDO*<br>
+              *Paisana Bebidas* | Ref: #COT-12345<br>
+              ━━━━━━━━━━━━━━━━━<br>
+              👤 *Cliente:* Juan Pérez<br>
+              🛵 *Modalidad:* Envío a Domicilio<br>
+              📍 *Dirección:* San Martín 1234<br>
+              💳 *Medio de Pago:* Transferencia<br>
+              ━━━━━━━━━━━━━━━━━<br>
+              💰 *TOTAL ESTIMADO:* $25.000
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; border-top: 1px solid var(--border-color); padding-top: 14px;">
+            <button class="btn btn-secondary" style="width: 100%; justify-content: center; font-size: 0.82rem;" onclick="saveDraftLocal()">
+              <i class="fa-solid fa-floppy-disk"></i> Guardar Borrador
+            </button>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <!-- Área Oculta para Impresión -->
+  <div id="printArea" style="display: none;"></div>
+
+  <script>
+    // ========================================================================
+    // ESTADO DEL ASISTENTE Y PRESETS
+    // ========================================================================
+    let currentConfig = {
+      brand: {
+        name: "Paisana Bebidas",
+        tagline: "Vinos de Autor & Bebidas Selectas",
+        shortDescription: "Catálogo exclusivo de vinos, bebidas destiladas, mixers y snacks con entrega rápida. Hacé tu pedido directo por WhatsApp.",
+        logoUrl: "assets/logo.svg",
+        logoText: "PAISANA",
+        businessType: "vinoteca"
+      },
+      theme: {
+        primary: "#3ca1a4",
+        accent: "#e5aa38"
+      },
+      contact: {
+        whatsappNumber: "5492612586004",
+        whatsappDisplay: "+54 9 2612 58-6004",
+        email: "ventas@paisanabebidas.com",
+        instagram: "https://instagram.com"
+      },
+      logistics: {
+        enableDelivery: true,
+        deliveryFee: 2500,
+        deliveryEstimateText: "Entrega Express 45'",
+        enablePickup: true,
+        pickupAddress: "C. Tapón Moyano 1745, M5523 Mendoza",
+        pickupMapsUrl: "https://maps.app.goo.gl/JSEvWcQvFY8zpxcH9"
+      },
+      payments: {
+        currencySymbol: "$",
+        cashDiscountPercent: 10,
+        methods: [
+          "Transferencia Bancaria / Mercado Pago (Alias)",
+          "Efectivo contra entrega (10% OFF)",
+          "Tarjeta de Débito / Crédito al recibir"
+        ]
+      },
+      schedule: {
+        weekdays: "Lunes a Sábados: 10:00 a 00:00 hs",
+        weekends: "Domingos: 17:00 a 23:00 hs"
+      },
+      modules: {
+        enableAgeGate: true,
+        enableRegretButton: true,
+        enableAnnouncement: true,
+        enableFeaturedBanner: true
+      },
+      categories: [
+        {
+          id: "vinos",
+          name: "Vinos",
+          icon: "fa-solid fa-wine-glass",
+          title: "Vinos de Autor",
+          subtitle: "Explorá nuestras mejores etiquetas por varietal",
+          subcategories: [
+            { id: "all", label: "🍷 Todos los Vinos" },
+            { id: "malbec", label: "🍇 Malbec" },
+            { id: "cabernet-sauvignon", label: "🍷 Cabernet Sauvignon" },
+            { id: "blends", label: "✨ Blends" },
+            { id: "blancos-chardonnay", label: "🥂 Blancos" }
+          ]
+        },
+        {
+          id: "bebidas",
+          name: "Cervezas & Bebidas",
+          icon: "fa-solid fa-beer-mug-empty",
+          title: "Cervezas & Destilados",
+          subtitle: "Cervezas artesanales, gin y aperitivos",
+          subcategories: [
+            { id: "all", label: "🍺 Todas las Bebidas" },
+            { id: "cervezas", label: "🌿 Cervezas" },
+            { id: "gin", label: "🌿 Gin Premium" },
+            { id: "fernet", label: "🦅 Fernet" }
+          ]
+        },
+        {
+          id: "sin-alcohol",
+          name: "Sin Alcohol",
+          icon: "fa-solid fa-bottle-water",
+          title: "Bebidas sin Alcohol",
+          subtitle: "Gaseosas, mixers especiales y aguas",
+          subcategories: [
+            { id: "all", label: "🥤 Todo Sin Alcohol" },
+            { id: "gaseosas", label: "🥤 Gaseosas" },
+            { id: "tonicas", label: "🫧 Tónicas" }
+          ]
+        },
+        {
+          id: "snacks",
+          name: "Snacks",
+          icon: "fa-solid fa-bowl-food",
+          title: "Snacks & Varios",
+          subtitle: "Snacks crocantes, chocolates y combos",
+          subcategories: [
+            { id: "all", label: "🍿 Todos los Snacks" },
+            { id: "combos", label: "🔥 Combos" },
+            { id: "salados", label: "🥨 Salados" }
+          ]
+        }
+      ]
+    };
+
+    // Diccionario de Rubros y Presets
+    const PRESETS = {
+      gastronomia: {
+        brand: {
+          name: "Burgers & Co. Artesanal",
+          tagline: "Hamburguesas Smash, Papas & Cervezas",
+          shortDescription: "Las mejores hamburguesas smash con doble carne, pan brioche y papas crocantes. Pedidos directos a tu mesa o delivery.",
+          businessType: "gastronomia",
+          logoText: "BURGERS"
+        },
+        theme: { primary: "#f59e0b", accent: "#ef4444" },
+        modules: { enableAgeGate: false, enableRegretButton: true, enableAnnouncement: true, enableFeaturedBanner: false },
+        categories: [
+          {
+            id: "burgers",
+            name: "Hamburguesas",
+            icon: "fa-solid fa-burger",
+            title: "Hamburguesas Smash & Clásicas",
+            subtitle: "Elaboradas con carne 100% novillo y pan brioche horneado diario",
+            subcategories: [
+              { id: "all", label: "🍔 Todas las Burgers" },
+              { id: "simples", label: "🧀 Simples" },
+              { id: "dobles", label: "🥓 Dobles & Triples" },
+              { id: "veggie", label: "🌱 Opciones Veggie" }
+            ]
+          },
+          {
+            id: "papas",
+            name: "Guarniciones",
+            icon: "fa-solid fa-bowl-food",
+            title: "Papas Fritas & Entradas",
+            subtitle: "Acompañamientos crocantes y salsas caseras",
+            subcategories: [
+              { id: "all", label: "🍟 Todas las Papas" },
+              { id: "cheddar-bacon", label: "🧀 Con Cheddar & Bacon" },
+              { id: "nuggets", label: "🍗 Nuggets de Pollo" }
+            ]
+          },
+          {
+            id: "bebidas",
+            name: "Bebidas",
+            icon: "fa-solid fa-bottle-water",
+            title: "Bebidas & Gaseosas",
+            subtitle: "Cervezas heladas y líneas de gaseosas",
+            subcategories: [
+              { id: "all", label: "🥤 Todas las Bebidas" },
+              { id: "gaseosas", label: "🥤 Gaseosas" },
+              { id: "cervezas", label: "🍺 Cervezas" }
+            ]
+          },
+          {
+            id: "postres",
+            name: "Postres",
+            icon: "fa-solid fa-ice-cream",
+            title: "Postres & Helados",
+            subtitle: "El broche dulce para tu pedido",
+            subcategories: [
+              { id: "all", label: "🍦 Todos los Postres" },
+              { id: "helados", label: "🍧 Helados" }
+            ]
+          }
+        ]
+      },
+      indumentaria: {
+        brand: {
+          name: "Aura Boutique & Moda",
+          tagline: "Tendencia, Estilo & Prendas Esenciales",
+          shortDescription: "Colección exclusiva de indumentaria urbana y contemporánea. Envíos a todo el país y retiro en showroom.",
+          businessType: "indumentaria",
+          logoText: "AURA"
+        },
+        theme: { primary: "#ec4899", accent: "#8b5cf6" },
+        modules: { enableAgeGate: false, enableRegretButton: true, enableAnnouncement: true, enableFeaturedBanner: true },
+        categories: [
+          {
+            id: "remeras",
+            name: "Remeras & Tops",
+            icon: "fa-solid fa-shirt",
+            title: "Remeras & Tops Urbanos",
+            subtitle: "Algodón peinado premium y estampas exclusivas",
+            subcategories: [
+              { id: "all", label: "👕 Todas las Remeras" },
+              { id: "oversize", label: "✨ Oversize" },
+              { id: "basicas", label: "🖤 Básicas" }
+            ]
+          },
+          {
+            id: "pantalones",
+            name: "Pantalones & Jeans",
+            icon: "fa-solid fa-user",
+            title: "Jeans, Pantalones & Cargos",
+            subtitle: "Cortes modernos, cómodos y duraderos",
+            subcategories: [
+              { id: "all", label: "👖 Todos los Pantalones" },
+              { id: "jeans", label: "✨ Jeans" },
+              { id: "cargos", label: "🎒 Pantalones Cargo" }
+            ]
+          },
+          {
+            id: "abrigos",
+            name: "Camperas & Hoodies",
+            icon: "fa-solid =fa-vest",
+            title: "Camperas, Buzos & Hoodies",
+            subtitle: "Prendas de media estación e invierno",
+            subcategories: [
+              { id: "all", label: "🧥 Todos los Abrigos" },
+              { id: "hoodies", label: "🔥 Buzos Hoodies" }
+            ]
+          },
+          {
+            id: "accesorios",
+            name: "Accesorios",
+            icon: "fa-solid fa-glasses",
+            title: "Accesorios & Complementos",
+            subtitle: "Gorras, medias, cinturones y carteras",
+            subcategories: [
+              { id: "all", label: "🧢 Todos los Accesorios" }
+            ]
+          }
+        ]
+      },
+      cafeteria: {
+        brand: {
+          name: "Origen Café de Especialidad",
+          tagline: "Café de Finca, Tostaduría & Pastelería",
+          shortDescription: "Café tostado en el día, pastelería artesanal de masa madre y opciones brunch para disfrutar.",
+          businessType: "cafeteria",
+          logoText: "ORIGEN"
+        },
+        theme: { primary: "#d97706", accent: "#78350f" },
+        modules: { enableAgeGate: false, enableRegretButton: true, enableAnnouncement: true, enableFeaturedBanner: false },
+        categories: [
+          {
+            id: "cafe",
+            name: "Cafetería",
+            icon: "fa-solid fa-mug-hot",
+            title: "Café de Especialidad & Bebidas",
+            subtitle: "Espresso, filtrados, flat white y lattes con leches vegetales",
+            subcategories: [
+              { id: "all", label: "☕ Todos los Cafés" },
+              { id: "calientes", label: "🔥 Calientes" },
+              { id: "frios", label: "🧊 Cold Brew & Iced" }
+            ]
+          },
+          {
+            id: "pasteleria",
+            name: "Pastelería",
+            icon: "fa-solid fa-cake-candles",
+            title: "Pastelería & Medialunas",
+            subtitle: "Croissants de manteca, rolls de canela y porciones de torta",
+            subcategories: [
+              { id: "all", label: "🥐 Toda la Pastelería" },
+              { id: "medialunas", label: "🥐 Croissants" },
+              { id: "tortas", label: "🍰 Tortas & Tartas" }
+            ]
+          },
+          {
+            id: "salados",
+            name: "Salados & Brunch",
+            icon: "fa-solid fa-bread-slice",
+            title: "Tostones, Sandwiches & Brunch",
+            subtitle: "Pan de masa madre con palta, huevos revueltos y tostados",
+            subcategories: [
+              { id: "all", label: "🥪 Todo lo Salado" }
+            ]
+          }
+        ]
+      },
+      petshop: {
+        brand: {
+          name: "Mundo Pet Tienda Animal",
+          tagline: "Alimentos Balanceados & Accesorios",
+          shortDescription: "Las mejores marcas de alimentos balanceados, juguetes, snacks e higiene para perros y gatos.",
+          businessType: "petshop",
+          logoText: "MUNDO PET"
+        },
+        theme: { primary: "#10b981", accent: "#f59e0b" },
+        modules: { enableAgeGate: false, enableRegretButton: true, enableAnnouncement: true, enableFeaturedBanner: false },
+        categories: [
+          {
+            id: "perros",
+            name: "Perros",
+            icon: "fa-solid fa-dog",
+            title: "Alimentos & Accesorios para Perros",
+            subtitle: "Balanceados de calidad super premium y juguetes",
+            subcategories: [
+              { id: "all", label: "🐶 Todo Perros" },
+              { id: "alimentos", label: "🍖 Alimentos" },
+              { id: "juguetes", label: "🎾 Juguetes" }
+            ]
+          },
+          {
+            id: "gatos",
+            name: "Gatos",
+            icon: "fa-solid fa-cat",
+            title: "Alimentos & Accesorios para Gatos",
+            subtitle: "Nutrición felina, piedras sanitarias y rascadores",
+            subcategories: [
+              { id: "all", label: "🐱 Todo Gatos" },
+              { id: "alimentos-gatos", label: "🐟 Alimentos" },
+              { id: "piedras", label: "🐾 Higiene" }
+            ]
+          }
+        ]
+      },
+      dietetica: {
+        brand: {
+          name: "Verde Natural Dietética",
+          tagline: "Frutos Secos, Harinas & Productos Sin TACC",
+          shortDescription: "Alimentos naturales, semillas, harinas saludables, legumbres y suplementos dietarios.",
+          businessType: "dietetica",
+          logoText: "VERDE NATURAL"
+        },
+        theme: { primary: "#84cc16", accent: "#065f46" },
+        modules: { enableAgeGate: false, enableRegretButton: true, enableAnnouncement: true, enableFeaturedBanner: false },
+        categories: [
+          {
+            id: "frutos-secos",
+            name: "Frutos Secos",
+            icon: "fa-solid fa-seedling",
+            title: "Frutos Secos & Semillas",
+            subtitle: "Nueces, almendras, castañas y mix energéticos",
+            subcategories: [
+              { id: "all", label: "🌰 Todos los Frutos" },
+              { id: "mixes", label: "✨ Mixes" }
+            ]
+          },
+          {
+            id: "sintacc",
+            name: "Sin TACC",
+            icon: "fa-solid fa-wheat-awn-circle-exclamation",
+            title: "Alimentos Libres de Gluten (Sin TACC)",
+            subtitle: "Galletitas, premezclas y pastas certificadas",
+            subcategories: [
+              { id: "all", label: "🌾 Todo Sin TACC" }
+            ]
+          }
+        ]
+      },
+      ferreteria: {
+        brand: {
+          name: "Ferretería El Tornillo",
+          tagline: "Herramientas, Electricidad & Pinturas",
+          shortDescription: "Todo para el hogar, la construcción y reparaciones. Envíos en obra y asesoramiento técnico.",
+          businessType: "ferreteria",
+          logoText: "EL TORNILLO"
+        },
+        theme: { primary: "#0284c7", accent: "#f97316" },
+        modules: { enableAgeGate: false, enableRegretButton: true, enableAnnouncement: true, enableFeaturedBanner: false },
+        categories: [
+          {
+            id: "herramientas",
+            name: "Herramientas",
+            icon: "fa-solid fa-wrench",
+            title: "Herramientas Manuales & Eléctricas",
+            subtitle: "Taladros, amoladoras, pinzas y destornilladores",
+            subcategories: [
+              { id: "all", label: "🔨 Todas las Herramientas" }
+            ]
+          },
+          {
+            id: "pinturas",
+            name: "Pinturas",
+            icon: "fa-solid fa-paintbrush",
+            title: "Pinturas, Rodillos & Esmaltes",
+            subtitle: "Látex interior/exterior y accesorios para pintar",
+            subcategories: [
+              { id: "all", label: "🎨 Pinturas" }
+            ]
+          }
+        ]
+      },
+      general: {
+        brand: {
+          name: "Mi Tienda Express",
+          tagline: "Catálogo Online & Pedidos por WhatsApp",
+          shortDescription: "Comprá fácil y rápido desde tu celular directo con nosotros.",
+          businessType: "general",
+          logoText: "MI TIENDA"
+        },
+        theme: { primary: "#a855f7", accent: "#06b6d4" },
+        modules: { enableAgeGate: false, enableRegretButton: true, enableAnnouncement: true, enableFeaturedBanner: false },
+        categories: [
+          {
+            id: "destacados",
+            name: "Destacados",
+            icon: "fa-solid fa-star",
+            title: "Productos Más Vendidos",
+            subtitle: "Nuestra selección destacada de la semana",
+            subcategories: [{ id: "all", label: "✨ Todos los Destacados" }]
+          },
+          {
+            id: "ofertas",
+            name: "Ofertas",
+            icon: "fa-solid fa-tag",
+            title: "Super Promociones",
+            subtitle: "Descuentos por tiempo limitado",
+            subcategories: [{ id: "all", label: "🔥 Todas las Ofertas" }]
+          }
+        ]
+      }
+    };
+
+    // Inicialización al cargar la página
+    document.addEventListener("DOMContentLoaded", () => {
+      loadSavedDraft();
+      bindColorInputs();
+      bindRealTimePreview();
+      renderCategoriesList();
+      updatePreviewUI();
+      generateConfigCode();
+    });
+
+    // Cambiar de paso en el wizard
+    function switchStep(stepId) {
+      document.querySelectorAll(".step-panel").forEach(p => p.style.display = "none");
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      
+      const target = document.getElementById(stepId);
+      if (target) target.style.display = "block";
+
+      const btn = Array.from(document.querySelectorAll(".tab-btn")).find(b => b.getAttribute("onclick")?.includes(stepId));
+      if (btn) btn.classList.add("active");
+
+      if (stepId === "step-exportar") {
+        generateConfigCode();
+      }
+    }
+
+    // Aplicar preset rápido
+    function applyPreset(presetKey) {
+      document.querySelectorAll(".preset-chip").forEach(c => c.classList.remove("active"));
+      event.currentTarget.classList.add("active");
+
+      const preset = PRESETS[presetKey];
+      if (!preset) return;
+
+      // Actualizar valores en currentConfig
+      if (preset.brand) Object.assign(currentConfig.brand, preset.brand);
+      if (preset.theme) Object.assign(currentConfig.theme, preset.theme);
+      if (preset.modules) Object.assign(currentConfig.modules, preset.modules);
+      if (preset.categories) currentConfig.categories = JSON.parse(JSON.stringify(preset.categories));
+
+      // Sincronizar inputs del formulario
+      syncFormWithConfig();
+      renderCategoriesList();
+      updatePreviewUI();
+      generateConfigCode();
+    }
+
+    function syncFormWithConfig() {
+      // Identidad
+      document.getElementById("brandName").value = currentConfig.brand.name;
+      document.getElementById("businessType").value = currentConfig.brand.businessType || "general";
+      document.getElementById("brandTagline").value = currentConfig.brand.tagline;
+      document.getElementById("brandDesc").value = currentConfig.brand.shortDescription;
+      document.getElementById("brandLogoText").value = currentConfig.brand.logoText || "";
+      
+      // Colores
+      document.getElementById("colorPrimary").value = currentConfig.theme.primary;
+      document.getElementById("colorPrimaryText").value = currentConfig.theme.primary;
+      document.getElementById("colorAccent").value = currentConfig.theme.accent;
+      document.getElementById("colorAccentText").value = currentConfig.theme.accent;
+
+      // Módulos
+      document.getElementById("enableAgeGate").checked = !!currentConfig.modules.enableAgeGate;
+      document.getElementById("enableRegretButton").checked = !!currentConfig.modules.enableRegretButton;
+      document.getElementById("enableAnnouncement").checked = !!currentConfig.modules.enableAnnouncement;
+      document.getElementById("enableFeaturedBanner").checked = !!currentConfig.modules.enableFeaturedBanner;
+    }
+
+    // Vincular sincronización de inputs de color
+    function bindColorInputs() {
+      const pColor = document.getElementById("colorPrimary");
+      const pText = document.getElementById("colorPrimaryText");
+      const aColor = document.getElementById("colorAccent");
+      const aText = document.getElementById("colorAccentText");
+
+      pColor.addEventListener("input", (e) => {
+        pText.value = e.target.value;
+        currentConfig.theme.primary = e.target.value;
+        updatePreviewUI();
+      });
+      pText.addEventListener("input", (e) => {
+        if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
+          pColor.value = e.target.value;
+          currentConfig.theme.primary = e.target.value;
+          updatePreviewUI();
+        }
+      });
+
+      aColor.addEventListener("input", (e) => {
+        aText.value = e.target.value;
+        currentConfig.theme.accent = e.target.value;
+        updatePreviewUI();
+      });
+      aText.addEventListener("input", (e) => {
+        if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
+          aColor.value = e.target.value;
+          currentConfig.theme.accent = e.target.value;
+          updatePreviewUI();
+        }
+      });
+    }
+
+    // Vincular cambios en tiempo real
+    function bindRealTimePreview() {
+      const inputs = [
+        "brandName", "brandTagline", "brandDesc", "waNumber", "waDisplay",
+        "deliveryFee", "deliveryEstimate", "pickupAddress"
+      ];
+      inputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("input", () => {
+          collectFormData();
+          updatePreviewUI();
+        });
+      });
+    }
+
+    function collectFormData() {
+      currentConfig.brand.name = document.getElementById("brandName").value.trim();
+      currentConfig.brand.tagline = document.getElementById("brandTagline").value.trim();
+      currentConfig.brand.shortDescription = document.getElementById("brandDesc").value.trim();
+      currentConfig.brand.logoUrl = document.getElementById("brandLogoUrl").value.trim();
+      currentConfig.brand.logoText = document.getElementById("brandLogoText").value.trim();
+      currentConfig.brand.businessType = document.getElementById("businessType").value;
+
+      currentConfig.theme.primary = document.getElementById("colorPrimaryText").value.trim();
+      currentConfig.theme.accent = document.getElementById("colorAccentText").value.trim();
+
+      currentConfig.contact.whatsappNumber = document.getElementById("waNumber").value.replace(/[^0-9]/g, "");
+      currentConfig.contact.whatsappDisplay = document.getElementById("waDisplay").value.trim();
+      currentConfig.contact.email = document.getElementById("contactEmail").value.trim();
+      currentConfig.contact.instagram = document.getElementById("contactInstagram").value.trim();
+
+      currentConfig.logistics.enableDelivery = document.getElementById("enableDelivery").checked;
+      currentConfig.logistics.deliveryFee = Number(document.getElementById("deliveryFee").value || 0);
+      currentConfig.logistics.deliveryEstimateText = document.getElementById("deliveryEstimate").value.trim();
+      currentConfig.logistics.enablePickup = document.getElementById("enablePickup").checked;
+      currentConfig.logistics.pickupAddress = document.getElementById("pickupAddress").value.trim();
+      currentConfig.logistics.pickupMapsUrl = document.getElementById("pickupMapsUrl").value.trim();
+
+      currentConfig.payments.currencySymbol = document.getElementById("currencySymbol").value.trim() || "$";
+      currentConfig.payments.cashDiscountPercent = Number(document.getElementById("cashDiscount").value || 0);
+      currentConfig.payments.methods = document.getElementById("paymentMethods").value.split("\n").filter(l => l.trim().length > 0);
+
+      currentConfig.schedule.weekdays = document.getElementById("scheduleWeekdays").value.trim();
+      currentConfig.schedule.weekends = document.getElementById("scheduleWeekends").value.trim();
+
+      currentConfig.modules.enableAgeGate = document.getElementById("enableAgeGate").checked;
+      currentConfig.modules.enableRegretButton = document.getElementById("enableRegretButton").checked;
+      currentConfig.modules.enableAnnouncement = document.getElementById("enableAnnouncement").checked;
+      currentConfig.modules.enableFeaturedBanner = document.getElementById("enableFeaturedBanner").checked;
+    }
+
+    function updatePreviewUI() {
+      const nameEl = document.getElementById("previewMockName");
+      const heroTagEl = document.getElementById("previewHeroTag");
+      const heroTitleEl = document.getElementById("previewHeroTitle");
+      const heroDescEl = document.getElementById("previewHeroDesc");
+      const badgeEl = document.getElementById("previewLogoBadge");
+      const btnEl = document.getElementById("previewMockBtn");
+      const waBubbleEl = document.getElementById("previewWaMessage");
+
+      const name = currentConfig.brand.name || "Mi Tienda";
+      if (nameEl) nameEl.textContent = name;
+      if (heroTitleEl) heroTitleEl.textContent = currentConfig.brand.tagline || "Catálogo Oficial";
+      if (heroDescEl) heroDescEl.textContent = currentConfig.brand.shortDescription || "Hacé tu pedido directo.";
+      if (badgeEl) badgeEl.style.background = currentConfig.theme.primary;
+      if (btnEl) btnEl.style.background = currentConfig.theme.primary;
+
+      if (waBubbleEl) {
+        waBubbleEl.innerHTML = `
+          📲 *SOLICITUD DE PEDIDO*<br>
+          *${escapeHTML(name)}* | Ref: #PED-${Date.now().toString().slice(-5)}<br>
+          ━━━━━━━━━━━━━━━━━<br>
+          👤 *Cliente:* Juan Pérez<br>
+          🛵 *Modalidad:* Envío a Domicilio (${escapeHTML(currentConfig.logistics.deliveryEstimateText)})<br>
+          📍 *Dirección:* San Martín 1234<br>
+          💳 *Medio de Pago:* ${escapeHTML(currentConfig.payments.methods[0] || 'Transferencia')}<br>
+          ━━━━━━━━━━━━━━━━━<br>
+          💰 *TOTAL ESTIMADO:* ${currentConfig.payments.currencySymbol}25.000
+        `;
+      }
+    }
+
+    // Renderizar categorías interactivas
+    function renderCategoriesList() {
+      const container = document.getElementById("categoriesListContainer");
+      if (!container) return;
+
+      container.innerHTML = currentConfig.categories.map((cat, idx) => {
+        return `
+          <div class="cat-item-card">
+            <div class="cat-head-row">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="${cat.icon}" style="color: var(--primary); font-size: 1.2rem;"></i>
+                <strong style="font-size: 1rem; color: #fff;">${cat.name}</strong>
+                <span style="font-size: 0.74rem; color: var(--text-muted);">ID: '${cat.id}'</span>
+              </div>
+              <button class="cat-remove-btn" onclick="removeCategory(${idx})" title="Eliminar categoría">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+              ${cat.subtitle || ''}
+            </div>
+            <div>
+              <strong style="font-size: 0.76rem; color: var(--accent);">Subcategorías / Variedades:</strong>
+              <div style="margin-top: 4px;">
+                ${cat.subcategories.map(s => `<span class="cat-chip-tag">${s.label}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function removeCategory(index) {
+      if (confirm(`¿Eliminar la categoría '${currentConfig.categories[index].name}'?`)) {
+        currentConfig.categories.splice(index, 1);
+        renderCategoriesList();
+        generateConfigCode();
+      }
+    }
+
+    function addNewCategoryDialog() {
+      const name = prompt("Nombre de la nueva categoría (ej: Postres, Calzado, Combos):");
+      if (!name) return;
+      
+      const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+      const icon = prompt("Icono de FontAwesome (ej: fa-solid fa-tag, fa-solid fa-pizza-slice, fa-solid fa-shirt):", "fa-solid fa-tag");
+
+      currentConfig.categories.push({
+        id: id,
+        name: name,
+        icon: icon || "fa-solid fa-tag",
+        title: name,
+        subtitle: `Catálogo de ${name}`,
+        subcategories: [
+          { id: "all", label: `✨ Todo en ${name}` }
+        ]
+      });
+
+      renderCategoriesList();
+      generateConfigCode();
+    }
+
+    // Generar código JavaScript para config.js
+    function generateConfigCode() {
+      collectFormData();
+
+      const configObject = {
+        brand: {
+          name: currentConfig.brand.name,
+          tagline: currentConfig.brand.tagline,
+          shortDescription: currentConfig.brand.shortDescription,
+          logoUrl: currentConfig.brand.logoUrl,
+          logoText: currentConfig.brand.logoText,
+          logoSubtext: currentConfig.brand.tagline.toUpperCase(),
+          businessType: currentConfig.brand.businessType
+        },
+        theme: {
+          primary: currentConfig.theme.primary,
+          primaryLight: adjustBrightness(currentConfig.theme.primary, 25),
+          accent: currentConfig.theme.accent,
+          accentLight: adjustBrightness(currentConfig.theme.accent, 20),
+          background: "#0c1017",
+          backgroundCard: "#151e2b",
+          textColor: "#f8fafc",
+          textMuted: "#94a3b8"
+        },
+        contact: {
+          whatsappNumber: currentConfig.contact.whatsappNumber,
+          whatsappDisplay: currentConfig.contact.whatsappDisplay,
+          email: currentConfig.contact.email,
+          instagram: currentConfig.contact.instagram
+        },
+        logistics: currentConfig.logistics,
+        payments: currentConfig.payments,
+        schedule: currentConfig.schedule,
+        modules: currentConfig.modules,
+        hero: {
+          tag: "Selección Oficial 2026",
+          titlePrefix: currentConfig.brand.name + ",",
+          titleHighlight: "Calidad & Selección",
+          titleSuffix: "Online",
+          description: currentConfig.brand.shortDescription,
+          feature1Icon: "fa-solid fa-bolt",
+          feature1Text: currentConfig.logistics.deliveryEstimateText,
+          feature2Icon: "fa-solid fa-shield-check",
+          feature2Text: "Garantía & Confianza",
+          feature3Icon: "fa-solid fa-star",
+          feature3Text: "Atención Personalizada",
+          primaryCtaText: "Explorar Catálogo",
+          secondaryCtaText: "Consultar Stock"
+        },
+        featuredBanner: {
+          badge: "RECOMENDADO",
+          location: currentConfig.logistics.pickupAddress,
+          title: currentConfig.brand.name,
+          description: currentConfig.brand.shortDescription,
+          noticeIcon: "fa-solid fa-star",
+          noticeTitle: "Atención Directa por WhatsApp:",
+          noticeText: "Coordiná tu pedido y resolvemos tus consultas en minutos.",
+          whatsappLink: `https://wa.me/${currentConfig.contact.whatsappNumber}`,
+          btnText: "Hablar con un Asesor",
+          btnHint: "Respuesta rápida"
+        },
+        categories: currentConfig.categories
+      };
+
+      const code = `/**
+ * ============================================================================
+ * CONFIGURACIÓN CENTRAL DE LA TIENDA (Generado automáticamente)
+ * Generado el: ${new Date().toLocaleString()}
+ * ============================================================================
+ */
+
+const STORE_CONFIG = ${JSON.stringify(configObject, null, 2)};
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = STORE_CONFIG;
+}
+`;
+
+      const viewer = document.getElementById("codeViewerBox");
+      if (viewer) viewer.textContent = code;
+
+      return code;
+    }
+
+    // Descargar archivo config.js
+    function downloadConfigFile() {
+      const code = generateConfigCode();
+      const blob = new Blob([code], { type: "text/javascript;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "config.js";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      alert("¡Archivo 'config.js' descargado con éxito!\nGuardalo en la raíz de tu tienda web para activar tu nuevo local.");
+    }
+
+    // Copiar código al portapapeles
+    function copyConfigCode() {
+      const code = generateConfigCode();
+      navigator.clipboard.writeText(code).then(() => {
+        alert("¡Código de config.js copiado al portapapeles!");
+      }).catch(() => {
+        prompt("Copiá este código manualmente:", code);
+      });
+    }
+
+    // Guardar borrador en LocalStorage
+    function saveDraftLocal() {
+      collectFormData();
+      localStorage.setItem("local_wizard_draft", JSON.stringify(currentConfig));
+      alert("¡Borrador guardado exitosamente en este navegador!");
+    }
+
+    // Cargar borrador si existe
+    function loadSavedDraft() {
+      try {
+        const saved = localStorage.getItem("local_wizard_draft");
+        if (saved) {
+          currentConfig = JSON.parse(saved);
+          syncFormWithConfig();
+        }
+      } catch (e) {}
+    }
+
+    // Imprimir Ficha de Relevamiento / Onboarding
+    function exportPrintableForm() {
+      collectFormData();
+      const printBox = document.getElementById("printArea");
+      if (!printBox) return;
+
+      printBox.innerHTML = `
+        <h1 style="font-size: 24px; margin-bottom: 8px;">Ficha de Alta y Relevamiento de Nuevo Local</h1>
+        <p style="font-size: 14px; margin-bottom: 20px; color: #555;">Fecha: ${new Date().toLocaleDateString()}</p>
+        <hr style="margin-bottom: 20px;">
+        
+        <h2>1. Identidad de Marca</h2>
+        <p><strong>Comercio:</strong> ${currentConfig.brand.name}</p>
+        <p><strong>Rubro:</strong> ${currentConfig.brand.businessType}</p>
+        <p><strong>Slogan:</strong> ${currentConfig.brand.tagline}</p>
+        <p><strong>Descripción:</strong> ${currentConfig.brand.shortDescription}</p>
+        <p><strong>Color Primario:</strong> ${currentConfig.theme.primary} | <strong>Acento:</strong> ${currentConfig.theme.accent}</p>
+        <br>
+
+        <h2>2. Contacto & Envíos</h2>
+        <p><strong>WhatsApp Pedidos:</strong> +${currentConfig.contact.whatsappNumber}</p>
+        <p><strong>Email:</strong> ${currentConfig.contact.email}</p>
+        <p><strong>Dirección:</strong> ${currentConfig.logistics.pickupAddress}</p>
+        <p><strong>Costo de Envío:</strong> $${currentConfig.logistics.deliveryFee}</p>
+        <p><strong>Horarios:</strong> ${currentConfig.schedule.weekdays} | ${currentConfig.schedule.weekends}</p>
+        <br>
+
+        <h2>3. Categorías Configuradas</h2>
+        <ul>
+          ${currentConfig.categories.map(c => `<li><strong>${c.name}</strong>: ${c.subcategories.map(s => s.label).join(', ')}</li>`).join('')}
+        </ul>
+      `;
+
+      printBox.style.display = "block";
+      window.print();
+      printBox.style.display = "none";
+    }
+
+    // Utilidades
+    function adjustBrightness(hex, percent) {
+      let num = parseInt(hex.replace("#", ""), 16),
+        amt = Math.round(2.55 * percent),
+        R = (num >> 16) + amt,
+        G = (num >> 8 & 0x00FF) + amt,
+        B = (num & 0x0000FF) + amt;
+      return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+    }
+
+    function escapeHTML(str) {
+      return String(str || '').replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+      });
+    }
+  </script>
+
+</body>
+</html>
